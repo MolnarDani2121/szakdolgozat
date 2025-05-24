@@ -1,0 +1,250 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using UtazasNaplozas.Components.Account.Shared
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+@page "/new_journey"
+@inject IJSRuntime JsRuntime
+
+@attribute [Authorize]
+
+<PageTitle>Új utazás</PageTitle>
+
+@if (isProcessing)
+{
+    <div class="position-absolute w-75 h-75 d-flex flex-column align-items-center bg-white justify-content-center">
+        <img src="/images/loading.gif" alt="loading gif" />
+    </div>
+}
+else
+{
+    <div class="mt-5 h-100 w-75">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="card bg-light w-50">
+                <div class="card-body">
+                    <h5 class="card-title text-center display-6">Új út hozzáadása</h5>
+                    <div id="google_map" style="height: 0; width: 0;"></div>
+                    <EditForm Model="journey" Context="MainForm" OnValidSubmit="@SaveJourney">
+                        <hr />
+                        <DataAnnotationsValidator />
+                        <div class="col mb-3">
+                            <div class="d-flex flex-row">
+                                <div class="col form-floating">
+                                    <InputText id="startingpoint-search-box" @bind-Value="journey.StartingPoint" disabled="@_isStartingPointSet" class="form-control" aria-required="true" placeholder="Honnan" />
+                                    <label class="form-label">Honnan</label>
+                                </div>
+                                <div class="col-2 d-flex justify-content-end">
+                                    @if (_isStartingPointSet)
+                                    {
+                                        <button class="button bg-danger" type="button" @onclick="@DeleteStartingPont">
+                                            <span>
+                                                Törlés
+                                            </span>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="button" disabled="@(journey.StartingPoint == "" || journey.StartingPoint == null || journey.StartingPoint == string.Empty)" type="button" @onclick="@(() => SetStartingPoint(journey.StartingPoint))">
+                                            <span>
+                                                Hozzáadás
+                                            </span>
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                            <ValidationMessage For="() => journey.StartingPoint" class="text-danger" />
+                        </div>
+                        @if (_isStartingPointSet)
+                        {
+                            <div class="col mb-3">
+                                <div class="d-flex flex-row">
+                                    <div class="col form-floating">
+                                        <InputText id="destination-search-box" @bind-Value="journey.Destination" disabled="@_isDestinationSet" class="form-control" aria-required="true" placeholder="Date" />
+                                        <label class="form-label">Hova</label>
+                                    </div>
+                                    <div class="col-2 d-flex justify-content-end">
+                                        @if (_isDestinationSet)
+                                        {
+                                            <button class="button bg-danger" type="button" @onclick="@DeleteDestination">
+                                                <span>
+                                                    Törlés
+                                                </span>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="button" type="button" disabled="@(journey.Destination == "" || journey.Destination == null || journey.Destination == string.Empty)" @onclick="@(() => SetDestination(journey.Destination))">
+                                                <span>
+                                                    Hozzáadás
+                                                </span>
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                                <ValidationMessage For="() => journey.Destination" class="text-danger" />
+                            </div>
+                        }
+                        <div class="col form-floating mb-3">
+                            <InputDate @bind-Value="journey.StartDate" @bind-Value:format="yyyy/MM/dd" class="form-control" aria-required="true" />
+                            <label class="form-label">Mettől</label>
+                            <ValidationMessage For="() => journey.StartDate" class="text-danger" />
+                        </div>
+                        <div class="col form-floating mb-3">
+                            <InputDate @bind-Value="journey.EndDate" @bind-Value:format="yyyy/MM/dd" class="form-control" aria-required="true" />
+                            <label class="form-label">Meddig</label>
+                            <ValidationMessage For="() => journey.EndDate" class="text-danger" />
+                        </div>
+                        @if (_isStartingPointSet && _isDestinationSet)
+                        {
+                            <div class="subjourney-accordion">
+                                <hr />
+                                @foreach (var subJourney in journey.SubJourneys)
+                                {
+                                    <Accordion Class="accordion">
+                                        <AccordionItem>
+                                            <TitleTemplate>
+                                                <div class="row">
+                                                    <div class="col text-nowrap">
+                                                        @subJourney.Location
+                                                    </div>
+                                                    <div class="col text-nowrap">
+                                                        @($"{subJourney.Date.ToString("yyyy/MM/dd")}")
+                                                    </div>
+
+                                                </div>
+                                                <div class="col text-end pe-2">
+                                                    <button @onclick="() => DeleteSubJourney(subJourney)" type="button" class="delete-button">
+                                                        <span class="material-symbols-outlined text-danger">
+                                                            delete
+                                                        </span>
+                                                    </button>
+
+                                                </div>
+                                            </TitleTemplate>
+                                            <Content>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        @((MarkupString)subJourney.Description)
+                                                    </div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        @foreach (var image in subJourney.Images)
+                                                        {
+                                                            <div class="col mb-3">
+                                                                <img src=@GetImage(image) class="uploaded-image">
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </Content>
+                                        </AccordionItem>
+                                    </Accordion>
+                                }
+                            </div>
+                            <hr />
+                            <EditForm Model="subJourney" OnValidSubmit="SaveSubJourney">
+                                <DataAnnotationsValidator />
+                                <div class="col mb-3">
+                                    <div class="d-flex flex-row">
+                                        <div class="col form-floating">
+                                            <InputText id="subjourney-search-box" @bind-Value="subJourney.Location" disabled="@_isSubJourneyPlaceSet" class="form-control" aria-required="true" placeholder="Hol" />
+                                            <label class="form-label">Hol</label>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end">
+                                            @if (_isSubJourneyPlaceSet)
+                                            {
+                                                <button class="button bg-danger" type="button" @onclick="@DeleteSubJourneyPlace">
+                                                    <span>
+                                                        Törlés
+                                                    </span>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="button" type="button" disabled="@(subJourney.Location == "" || subJourney.Location == null || subJourney.Location == string.Empty)" @onclick="@(() => SetSubJourneyPlace(subJourney.Location))">
+                                                    <span>
+                                                        Hozzáadás
+                                                    </span>
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                    <ValidationMessage For="() => subJourney.Location" class="text-danger" />
+                                </div>
+                                <div class="col form-floating mb-3">
+                                    <InputDate @bind-Value="subJourney.Date" class="form-control" aria-required="true" placeholder="Dátum" />
+                                    <label class="form-label">Dátum</label>
+                                </div>
+                                <div class="col form-floating mb-3">
+                                    <BlazoredTextEditor @ref="QuillHtml" Placeholder="Leírás">
+                                        <ToolbarContent>
+                                            <select class="ql-header">
+                                                <option selected=""></option>
+                                                <option value="1"></option>
+                                                <option value="2"></option>
+                                                <option value="3"></option>
+                                                <option value="4"></option>
+                                                <option value="5"></option>
+                                            </select>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold"></button>
+                                                <button class="ql-italic"></button>
+                                                <button class="ql-underline"></button>
+                                                <button class="ql-strike"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color"></select>
+                                                <select class="ql-background"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-list" value="ordered"></button>
+                                                <button class="ql-list" value="bullet"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-link"></button>
+                                            </span>
+                                        </ToolbarContent>
+                                        <EditorContent>
+                                            <Placeholder>
+                                                Leírás
+                                            </Placeholder>
+                                        </EditorContent>
+                                    </BlazoredTextEditor>
+                                </div>
+                                <div class="col form-floating mb-3">
+                                    <InputFile OnChange="SaveImages" class="" multiple accept=".png,.jpg,.jpeg,.webp" />
+                                </div>
+                                <div>
+                                    <button type="submit" disabled="@(!_isSubJourneyPlaceSet)" class="button-primary w-100 btn btn-lg btn-primary">Új rész hozzáadása</button>
+                                </div>
+                            </EditForm>
+                        }
+                        <div class="row">
+                            @foreach (var image in subJourney.Images)
+                            {
+                                <div class="col mb-3">
+                                    <img src=@GetImage(image) class="uploaded-image">
+                                </div>
+                            }
+                            @if (errors.Count > 0)
+                            {
+
+                                <Toasts class="p-3" Messages="messages" AutoHide="true" Delay="4000" Placement="ToastsPlacement.BottomCenter" />
+                                ShowMessage(ToastType.Danger, errors);
+                            }
+                        </div>
+                        <hr />
+                        <div>
+                            <button type="submit" disabled="@(!_isStartingPointSet && !_isDestinationSet)" class="button-primary w-100 btn btn-lg btn-primary">Mentés</button>
+                        </div>
+
+                    </EditForm>
+                </div>
+            </div>
+            <div class="card bg-light w-50 ms-4">
+                <div class="card-body d-flex justify-content-center">
+                    <div id="map" style="height: 800px; width: 800px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

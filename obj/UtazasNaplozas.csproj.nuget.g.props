@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\molna\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.13.1</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\molna\.nuget\packages\" />
+    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
+  </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.core\29.2.5\buildTransitive\Syncfusion.Blazor.Core.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.core\29.2.5\buildTransitive\Syncfusion.Blazor.Core.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.data\29.2.5\buildTransitive\Syncfusion.Blazor.Data.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.data\29.2.5\buildTransitive\Syncfusion.Blazor.Data.props')" />
+    <Import Project="$(NuGetPackageRoot)syncfusion.blazor.maps\29.2.5\buildTransitive\Syncfusion.Blazor.Maps.props" Condition="Exists('$(NuGetPackageRoot)syncfusion.blazor.maps\29.2.5\buildTransitive\Syncfusion.Blazor.Maps.props')" />
+    <Import Project="$(NuGetPackageRoot)radzen.blazor\7.0.6\buildTransitive\Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor\7.0.6\buildTransitive\Radzen.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\8.0.13\buildTransitive\net8.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\8.0.13\buildTransitive\net8.0\Microsoft.EntityFrameworkCore.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\8.0.13\build\net8.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\8.0.13\build\net8.0\Microsoft.EntityFrameworkCore.Design.props')" />
+    <Import Project="$(NuGetPackageRoot)dymaptic.geoblazor.core\3.2.1\buildTransitive\dymaptic.GeoBlazor.Core.props" Condition="Exists('$(NuGetPackageRoot)dymaptic.geoblazor.core\3.2.1\buildTransitive\dymaptic.GeoBlazor.Core.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorgooglemaps\4.11.2\buildTransitive\BlazorGoogleMaps.props" Condition="Exists('$(NuGetPackageRoot)blazorgooglemaps\4.11.2\buildTransitive\BlazorGoogleMaps.props')" />
+    <Import Project="$(NuGetPackageRoot)blazored.texteditor\1.1.3\buildTransitive\Blazored.TextEditor.props" Condition="Exists('$(NuGetPackageRoot)blazored.texteditor\1.1.3\buildTransitive\Blazored.TextEditor.props')" />
+    <Import Project="$(NuGetPackageRoot)blazor.bootstrap\3.3.1\buildTransitive\Blazor.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazor.bootstrap\3.3.1\buildTransitive\Blazor.Bootstrap.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\molna\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.3</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\molna\.nuget\packages\microsoft.entityframeworkcore.tools\8.0.13</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgBuildWebCompiler Condition=" '$(PkgBuildWebCompiler)' == '' ">C:\Users\molna\.nuget\packages\buildwebcompiler\1.12.405</PkgBuildWebCompiler>
+  </PropertyGroup>
+</Project>

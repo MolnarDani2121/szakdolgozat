@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-UtazasNaplozas-9247da09-febf-41d5-b69c-2569023ec847</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazor.Bootstrap" Version="3.3.1" />
+    <PackageReference Include="Blazored.TextEditor" Version="1.1.3" />
+    <PackageReference Include="BlazorGoogleMaps" Version="4.11.2" />
+    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
+    <PackageReference Include="dymaptic.GeoBlazor.Core" Version="3.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.13" />
+    <PackageReference Include="Radzen.Blazor" Version="7.0.6" />
+    <PackageReference Include="Syncfusion.Blazor.Maps" Version="29.2.5" />
+    <PackageReference Include="System.Text.Json" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
+</Project>

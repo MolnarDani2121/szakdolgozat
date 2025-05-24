@@ -1,0 +1,53 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\molna\\source\\repos\\UtazasNaplozas\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\UtazasNaplozas.bundle.scp.css",
+      "PackagePath": "staticwebassets\\UtazasNaplozas.ct5e4d1s03.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\molna\\source\\repos\\UtazasNaplozas\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\molna\\source\\repos\\UtazasNaplozas\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\molna\\source\\repos\\UtazasNaplozas\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\molna\\source\\repos\\UtazasNaplozas\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\molna\\source\\repos\\UtazasNaplozas\\wwwroot\\location-map-2956.png",
+      "PackagePath": "staticwebassets\\location-map-2956.png"
+    },
+    {
+      "Id": "C:\\Users\\molna\\source\\repos\\UtazasNaplozas\\wwwroot\\map.js",
+      "PackagePath": "staticwebassets\\map.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.UtazasNaplozas.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.UtazasNaplozas.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.UtazasNaplozas.props",
+      "PackagePath": "build\\UtazasNaplozas.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.UtazasNaplozas.props",
+      "PackagePath": "buildMultiTargeting\\UtazasNaplozas.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.UtazasNaplozas.props",
+      "PackagePath": "buildTransitive\\UtazasNaplozas.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

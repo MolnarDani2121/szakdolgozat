@@ -1,0 +1,39 @@
+body[b-yal2szu5vb] {
+}
+
+.uploaded-image[b-yal2szu5vb] {
+    display: block;
+    max-width: 600px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+}
+
+.delete-button[b-yal2szu5vb] {
+    background: none;
+    border: none;
+}
+
+.subjourney-accordion[b-yal2szu5vb]  .accordion-button:not(.colapsed) {
+    background-color: white;
+    color: black;
+    background-image: none;
+}
+
+.subjourney-accordion[b-yal2szu5vb]  .accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(0,0,0,.125);
+}
+
+.button[b-yal2szu5vb] {
+    border: 1px solid #dee2e6;
+    background-color: white;
+    border-radius: 0.375rem;
+    width: auto;
+    height: 100%;
+    padding: 10px 20px;
+}
+
+.card[b-yal2szu5vb] {
+    min-height: 800px;
+}

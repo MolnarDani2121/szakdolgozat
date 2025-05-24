@@ -1,0 +1,46 @@
+﻿.uploaded-image {
+    display: block;
+    max-width: 400px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 0 !important
+}
+
+.accordion-container {
+    width: 80%;
+}
+
+    .accordion-container ::deep .accordion {
+        margin: 20px 0 20px 0;
+        width: 100%;
+        margin-top: 0;
+    }
+
+        .accordion-container ::deep .accordion > .accordion-item {
+            background: linear-gradient( to bottom, rgb(100, 150, 200) 0%, rgb(135, 206, 235) 16.67%, rgb(70, 130, 150) 33.33%, rgb(50, 120, 80) 50%, rgb(30, 90, 50) 83.33%, rgb(20, 60, 30) 100% );
+            color: white;
+        }
+
+            .accordion-container ::deep .accordion > .accordion-item .accordion .accordion-item {
+                background: none;
+                background-color: white;
+                color: initial;
+            }
+
+.delete-button {
+    border: 0;
+    background: none;
+}
+
+    .delete-button .material-symbols-outlined {
+        font-size: 1.8rem;
+        color: red;
+    }
+
+.modal-content {
+    background: linear-gradient( to bottom, rgb(100, 150, 200) 0%, rgb(135, 206, 235) 16.67%, rgb(70, 130, 150) 33.33%, rgb(50, 120, 80) 50%, rgb(30, 90, 50) 83.33%, rgb(20, 60, 30) 100% );
+}
+
+.modal-header {
+    border: none;
+}
